@@ -72,7 +72,7 @@ func main() {
 				fmt.Printf(" MATCH >>> %s\n", line)
 			}
 			// Skip if line is already in the map.
-			if lines[match[0]] {
+			if lines[line] {
 				continue
 			}
 			// Avoid Duplicates.
@@ -84,7 +84,7 @@ func main() {
 				fmt.Fprintf(f, "%s\n", line)
 			}
 			// Split on slashes and query strings - makes a lot of noise but may be useful.
-			lSplit := regexp.MustCompile(`(?:\/|\\|\?|=)`)
+			lSplit := regexp.MustCompile(`(?:\/|\\|\?|=|&)`)
 			lineSplit := lSplit.Split(line, -1)
 
 			if lineSplit != nil {
