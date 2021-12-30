@@ -18,7 +18,12 @@ func main() {
 	// verboseMode adds additional stdout prints.
 	var verboseMode bool
 
+	// stripSlashes removed the leading slashes from matches and splits
+	var stripSlash bool
+
 	// flag.BoolVar sets up the flag parsing.
+	flag.BoolVar(&stripSlash, "s", false, "strip leading slashes, for more consistent use with fuzzers")
+
 	flag.BoolVar(&quietMode, "q", false, "quiet mode prevents writing to stdout")
 
 	flag.BoolVar(&verboseMode, "v", false, "verbose mode")
@@ -67,6 +72,10 @@ func main() {
 		} else {
 			line = strings.Trim(match[0], "\"'")
 
+			if stripSlash {
+				line = strings.TrimLeft(line, "/\\")
+			}
+
 			// Print and write to file.
 			if verboseMode && !quietMode {
 				fmt.Printf(" MATCH >>> %s\n", line)
@@ -91,6 +100,9 @@ func main() {
 				for i := 0; i < len(lineSplit); i++ {
 					splitLine := strings.Trim(lineSplit[i], "\"'")
 
+					if stripSlash {
+						splitLine = strings.TrimLeft(splitLine, "/\\")
+					}
 					// Print and write to file.
 					if verboseMode && !quietMode {
 						fmt.Printf(" SPLIT >>> %s\n", splitLine)
