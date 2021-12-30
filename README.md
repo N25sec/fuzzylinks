@@ -21,6 +21,8 @@ N25
 ## Usage
 ```
 cat inputFile | fuzzylinks [-q|-v] outputFile
+  
+  -s strip leading slashes for more consistency when using with a fuzzing tool
 
   -q quiet mode prevents writing to stdout
 
