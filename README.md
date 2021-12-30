@@ -15,6 +15,9 @@ Cheers!
 N25
 
 
+## Installation
+`go install github.com/N25sec/fuzzylinks@latest`
+
 ## Usage
 ```
 cat inputFile | fuzzylinks [-q|-v] outputFile
