@@ -4,15 +4,11 @@ Link extractor and wordlist generator for fuzzing, written in go
 This is based on Tomnomnom's Anew https://github.com/tomnomnom/anew and inspired by GerbenJavado's LinkFinder https://github.com/GerbenJavado/LinkFinder
 
 I'm sure there are other tools that do a very similar and likely better job as fuzzylinks, but I couldn't find one that suited my needs and focused on wordlist generation for fuzzing. Alternatives I've tried have missed links for the sake of being cleaner with fewer false positives - fuzzylinks takes the opposite approach and attempts to extract as many potential links as possible.
-In addition to link extraction, fuzzylinks will also split the links down into its component parts and include this in the output file too. This is so that when passed to a fuzzer, directories/endpoints that are only referred to within a link are included. 
+In addition to link extraction, fuzzylinks can also split the links down into its component parts and include this in the output file too. This is so that when passed to a fuzzer, directories/endpoints that are only referred to within a link are included. Currently, this only includes each individual component of the link on it's own line with no combinations of link components for now.
 
-fuzzylinks will append any new links or compoentns of links it finds to the file passed as the first argument. The file handling is based on Anew and acts in the same manner. 
+fuzzylinks will append any new links or compoentns of links it finds to the file passed as the first argument. This file handling process is based on Anew and acts in the same manner. 
 
-This is my first go project so I would very much appreciate any constructive criticism and issues/pull requests for improvements.
-
-Cheers!
-
-N25
+This is my first go project and I would very much appreciate any constructive criticism and issues/pull requests for improvements.
 
 
 ## Installation
@@ -20,9 +16,11 @@ N25
 
 ## Usage
 ```
-cat inputFile | fuzzylinks [-q|-v] outputFile
+cat inputFile | fuzzylinks [-s|-r|-q|-v] outputFile
+
+  -s add lines to output for each component of found links
   
-  -s strip leading slashes for more consistency when using with a fuzzing tool
+  -r remove leading slashes for more consistency when using with a fuzzing tool
 
   -q quiet mode prevents writing to stdout
 
