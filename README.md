@@ -5,7 +5,7 @@ This is based on Tomnomnom's Anew https://github.com/tomnomnom/anew and inspired
 
 fuzzylinks will append any new links or compoentns of links it finds to the file passed as the first argument. This file handling process is based on Anew and acts in the same manner. 
 
-I'm sure there are other tools that do a very similar and likely better job as fuzzylinks, but I created this to learn Go and to suited my needs by focusing on wordlist generation for fuzzing. Alternatives I've tried have missed links for the sake of being cleaner with fewer false positives - fuzzylinks takes the opposite approach and attempts to extract as many potential links as possible.
+I'm sure there are other tools that do a very similar and likely better job as fuzzylinks, but I created this to learn the Go language and to suit my needs by focusing on wordlist generation for fuzzing. Alternatives I've tried have missed links for the sake of being cleaner with fewer false positives - fuzzylinks takes the opposite approach and attempts to extract as many potential links as possible.
 In addition to link extraction, fuzzylinks can also split the links down into its component parts and include this in the output file too. This is so that when passed to a fuzzer, directories/endpoints that are only referred to within a link are included. Currently, this only includes each individual component of the link on it's own line with no combinations of link components for now.
 
 
